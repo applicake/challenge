@@ -22,3 +22,42 @@ She provides this example:
   me.age = 39 #=> OK 
   me.age = 12 #=> Exception!
 
+== Challenge 2nd part
+
+Please write second solution without using:
+* eval, class_eval, instance_eval ...
+* define_method
+
+== Make sure that both solutions are inheritance friendly 
+
+=== Example 
+
+  class Person 
+    include CheckedAttributes
+   # include InheritanceFix # -> module which fixes inheritance problem in 2nd part of the challenge 
+    attr_checked :age  do |v| 
+      v > 15
+    end 
+  end
+  me = Person.new 
+  me.age = 39  #=> OK
+  me.age = 12  #=> Exception 
+
+  class Woman < Person
+    attr_checked :age do |v| 
+      v >= 10
+    end  
+  end
+
+  ela = Woman.new
+  ela.age = 12  #=> OK
+  ela.age = 8 #=> Exception
+  me.age = 12 #=> Exception  
+
+
+  class Mariusz < Person
+  end 
+
+  Mariusz.new.age = 18  #=> OK
+  Mariusz.new.age = 12  #= Exception  
+
