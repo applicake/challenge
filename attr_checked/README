@@ -1,0 +1,21 @@
+== The Boss’ Challenge
+
+“A few days ago,” your boss recounts, “I learned about the attr_accessor( ) method.1 Now I use it all the time to generate my objects’ attributes.” While she was at it, your boss also came up with the idea of writing her own Class Macro (136), similar to attr_accessor( ), which generates a validated attribute. “I call it attr_checked( ),” she says.
+
+She explains how this attr_checked( ) method should work, pointing out that it should take the name of the attribute, as well as a block. The block is used for validation. If you assign a value to the attribute and the block doesn’t return true for that value, then you get a runtime exception.
+
+Your boss’ first requirement is an attr_checked( ) Class Macro, and she explains her secondary requirement: “I don’t want this attr_checked() method to be available to each and every class, because I don’t like the idea of cluttering standard classes with my own methods. Instead, a class should gain access to attr_checked() only when it includes a CheckedAttributes module.”
+ She provides this example:
+
+=== Example 
+class Person
+  include CheckedAttributes 
+  attr_checked :age do |v| 
+     v >= 18 
+  end 
+end
+
+me = Person.new 
+me.age = 39 #=> OK 
+me.age = 12 #=> Exception!
+
