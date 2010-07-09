@@ -1,0 +1,29 @@
+== Odd slice challenge 
+
+implement the method called "odd_slice". 
+It's an Array extension, see the code below:
+
+=== Code 
+
+  module AryExt 
+    def odd_slice
+      YOUR CODE
+    end 
+  end 
+  
+  Array.send :include, AryExt
+
+
+The method should return the following:
+
+=== Examples 
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9].odd_slice                            # => [[1, 2, 3, 4, 5, 6, 7, 8, 9]] 
+[1, 2, 3, 4, 5, 6, 7, 8, 9].odd_slice(3)                         # => [[1, 2], [4, 5, 6, 7, 8, 9]]
+
+[1, 2, 3, 4, 5, 6, 4, 8, 9].odd_slice(4)                         # => [[1, 2, 3], [5, 6], [8, 9]]
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9].odd_slice{|i| i%3 == 0}              # => [[1, 2], [4, 5], [7, 8], []]
+
+[2, 3, 2, 2, 2].odd_slice(2)                                     # => [[], [3], [], [], []]
+
