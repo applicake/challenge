@@ -1,4 +1,4 @@
-module Enigma
+module Kiszalnoeval 
   def self.included(base)
     base.send :include, InstanceMethods
     base.extend ClassMethods
@@ -24,7 +24,7 @@ module Enigma
   end 
 
   module ClassMethods
-    def enigma_attr_checked(attr_name, &block)
+    def kiszalnoeval_attr_checked(attr_name, &block)
       @checked_attributes ||= {}
       attr_reader attr_name
       if block_given?
