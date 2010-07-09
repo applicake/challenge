@@ -1,4 +1,4 @@
-== Applicake Odd Slice Challenge runner
+== Applicake Challenge runner
 
 === Tu each challenge, run 
 
