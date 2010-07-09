@@ -30,11 +30,10 @@ Please write second solution without using:
 
 == Challenge 3rd part
   
-Write *module InheritanceFix* which would fix malfunction of inheritance in 
+Write *module* *InheritanceFix* which would fix malfunction of inheritance in 
 kiszal's 2nd part solution -> challenge/attr_checked/solutions/kiszalnoeval.rb
 
-(In order to see what's wrong we above solution include module from kiszalnoeval.rb
- into below example).
+(In order to see what's wrong we above solution include module from kiszalnoeval.rb into below example).
 
 
 === Example 
