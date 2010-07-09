@@ -8,4 +8,4 @@
   
    spec challenge_name/spec
 
-Challenge benchmark and spec engine was created by @marcinbunsh. Thx dude!
+Challenge benchmark and spec engine was created by @marcinbunsch. Thx dude!
