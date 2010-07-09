@@ -8,4 +8,26 @@
   
    spec challenge_name/spec
 
+=== How to add a solution for a challenge
+
+There is a convention for adding solutions. If your solution is called speedkiller, then your solution file needs to be in a single file, called speedkiller.rb and it has to be put in the solution directory (inside a challenge directory). So some_challenge/solutions/speedkiller.rb
+
+The file either defines a class or a module, which has to be called exactly like the file, so in our case:
+
+  class Speedkiller
+  end
+  
+Now if a method is benchmarked, say it's called some_method, then this method has to begin with the name of your solution, like this:
+
+  class Speedkiller
+    def speedkiller_some_method
+    end
+  end
+
+If it's not clear by now, take a look at the current solution, it should clarify the way it's done.
+
+If you want your solution added to the repo, please contact @kiszal or @marcinbunsch
+
+NOTE: This structure will be simplified in the near future, it was more of a working draft than a real engine :)
+
 Challenge benchmark and spec engine was created by @marcinbunsch. Thx dude!
