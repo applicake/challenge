@@ -1,6 +1,6 @@
 == Applicake Challenge runner
 
-=== Tu each challenge, run 
+=== In order to check each challenge, run 
 
   ruby challenge_name/benchmark.rb
   
