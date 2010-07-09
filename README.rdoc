@@ -1,0 +1,9 @@
+== Applicake Odd Slice Challenge runner
+
+=== Tu each challenge, run 
+
+  ruby challenge_name/benchmark.rb
+  
+=== You can also run specs with 
+  
+   spec challenge_name/spec
