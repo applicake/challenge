@@ -1,17 +1,26 @@
 solutions = Dir.glob('solutions/*.rb').collect { |s| s.gsub('solutions/', '').gsub('.rb', '') }
-class Tester; end
+
 
 solutions.each do |solution|
   require "solutions/#{solution}.rb"
-  mod = solution.gsub('_', ' ').capitalize.gsub(' ', '')
-  Tester.send :include, Object.const_get(mod)
-  Tester.send("#{solution}_attr_checked", :age) { |v| v >= 18 }
-    
+      
   describe "#{solution}" do   
-  
+    
     before do
-      @instance = Tester.new
+      mod = solution.split('_').collect { |part| part.capitalize }.join('')
+      klass_name = "Tester_#{solution}"
+      eval <<-STR
+        class #{klass_name}
+          include #{mod}
+          #{solution}_attr_checked :age do |v|
+            v >= 18
+          end
+        end
+      STR
+      klass = Object.const_get(klass_name)
+      @instance = klass.new
     end
+    
     
     it "should work as a setter and a getter" do
       @instance.age = 20

@@ -8,13 +8,24 @@ klass = Tester
 
 # solutions
 solutions = load_solutions
+
+if ARGV[0] == nil
+  solutions.each do |solution|
+    cmd = "ruby benchmark.rb #{solution[0]}"
+    system cmd
+  end
+  exit
+else
+  solutions = solutions.select { |s| s[0] == ARGV[0] }
+end
+
 solutions.each do |name, mod|
   klass.send :include, Object.const_get(mod)
 end
 
 
 # Number of iterations
-n = 50000
+n = 200000
 
 # Lambdas available
 lambdas = {

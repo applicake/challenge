@@ -1,0 +1,9 @@
+h1. Applicake Odd Slice Challenge runner
+
+p. Tu use it, run
+
+bc. ruby benchmark.rb
+  
+p. You can also run specs with 
+  
+bc. spec spec
