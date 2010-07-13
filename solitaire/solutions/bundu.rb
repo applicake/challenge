@@ -10,5 +10,9 @@ class Bundu
   def decrypt(message)
     @crypter.decrypt(message)
   end
+
+  def encrypt(message)
+    @crypter.encrypt(message)
+  end
   
 end
