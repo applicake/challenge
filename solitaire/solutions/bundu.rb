@@ -1,10 +1,7 @@
-require File.dirname(__FILE__) + '/bundu/deck'
-require File.dirname(__FILE__) + '/bundu/crypter'
-
 class Bundu
   
   def initialize
-    @crypter = Crypter.new(Deck.create)
+    @crypter = Bundu::Crypter.new(Bundu::Deck.create)
   end
   
   def decrypt(message)
@@ -16,3 +13,6 @@ class Bundu
   end
   
 end
+
+require File.dirname(__FILE__) + '/bundu/crypter'
+require File.dirname(__FILE__) + '/bundu/deck'

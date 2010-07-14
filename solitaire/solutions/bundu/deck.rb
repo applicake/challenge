@@ -1,7 +1,7 @@
-class Deck < Array
+class Bundu::Deck < Array
     
   def self.create
-    Deck.new((1..52).to_a + ['A', 'B'])
+    Bundu::Deck.new((1..54).to_a)
   end
   
   attr_accessor :backup
@@ -9,6 +9,13 @@ class Deck < Array
   def initialize(arr)
     super
     snapshot
+  end
+  
+  # The length of the deck array is constant, 
+  # so it makes no sense to calculate the length over and over again
+  # save it in an instance variable and enjoy the speed
+  def cached_length
+    @cached_length ||= self.length
   end
   
   def snapshot
@@ -21,20 +28,21 @@ class Deck < Array
   
   def move_card(element, places)
     dest = index(element) + places
-    dest = dest % self.length if dest >= self.length
-    dest = 1 if dest == 0
+    if dest >= self.cached_length
+      dest = dest % self.cached_length
+      dest = 1 if dest == 0
+    end
     self.insert(dest, delete(element))
   end
   
   def triple_cut(card_a, card_b)
     a, b = index(card_a), index(card_b)
     b, a = a, b if a > b
-    top, bottom, middle = self[0..a-1], self[b+1..-1], self[a..b]
+    top, bottom, middle = self[0..a-1], self[b+1..self.cached_length-1], self[a..b]
     self.replace bottom + middle + top
   end
 
   def count_cut
-    return if ['A', 'B'].include?(last)
     cut, rest = self.slice(0, last), self[last..-1]
     last_card = rest.pop
     self.replace rest + cut + [last_card]
@@ -44,24 +52,24 @@ class Deck < Array
     # 1. Key the deck
     # At this point we're assuming the deck is keyed
     # 2. Move the A joker down one card
-    move_card('A', 1)
+    move_card(53, 1)
     # 3. Move the B joker down two cards.
-    move_card('B', 2)
+    move_card(54, 2)
     # 4. Perform a triple cut around the two jokers
-    triple_cut('A', 'B')
+    triple_cut(53, 54)
     # 5. Perform a count cut using the value of the bottom card
-    count_cut
+    count_cut unless last > 52
     # 6. Fetch the keystream letter
-    offset = self.first.is_a?(Fixnum) ? self.first : 53
+    offset = self.first < 53 ? self.first : 53
     letter = self[offset]
-    letter.is_a?(Fixnum) ? (letter % 26) : generate_keystream_number
+    letter < 53 ? (letter % 26) : generate_keystream_number
   end
 
   def generate_keystream(length)
     result = []
     length.times do
       number = generate_keystream_number 
-      result << number if number
+      result << number
     end
     result
   end

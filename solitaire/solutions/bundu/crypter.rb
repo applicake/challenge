@@ -1,4 +1,4 @@
-class Crypter
+class Bundu::Crypter
   
   CHARSET= ('A'..'Z').to_a
 
@@ -14,27 +14,25 @@ class Crypter
       converted += 'X' * padding
     end
     
-    keystream = deck.generate_keystream(converted.length)
     result = []
     converted.split('').each_with_index do |char, index|
-      code = CHARSET.index(char) 
-      encrypted = (code.to_i + keystream[index].to_i) % 26
+      code = CHARSET.index(char)       
+      encrypted = (code.to_i + deck.generate_keystream_number) % 26
       result << CHARSET[encrypted]
     end
     encrypted = result.join('')
     encrypted.scan(/.{1,5}/).join(' ')
-    
   end
   
   def decrypt(encrypted)
     encrypted.gsub!(/[^A-Z]/, '')
     result = []
     self.deck.reload
-    keystream = deck.generate_keystream(encrypted.length)
+    # keystream = deck.generate_keystream(encrypted.length)
     encrypted.split('').each_with_index do |char, index|
       if char.match(/[A-Z]/i)
         code = CHARSET.index(char) 
-        decrypted = code - keystream[index] 
+        decrypted = code -  deck.generate_keystream_number
         decrypted = 26 + decrypted if decrypted < 0
         result << CHARSET[decrypted]
       else
