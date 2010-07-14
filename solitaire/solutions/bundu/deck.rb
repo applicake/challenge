@@ -43,7 +43,7 @@ class Bundu::Deck < Array
   end
 
   def count_cut
-    cut, rest = self.slice(0, last), self[last..-1]
+    cut, rest = self[0, last], self[last..self.cached_length-1]
     last_card = rest.pop
     self.replace rest + cut + [last_card]
   end
@@ -63,15 +63,6 @@ class Bundu::Deck < Array
     offset = self.first < 53 ? self.first : 53
     letter = self[offset]
     letter < 53 ? (letter % 26) : generate_keystream_number
-  end
-
-  def generate_keystream(length)
-    result = []
-    length.times do
-      number = generate_keystream_number 
-      result << number
-    end
-    result
   end
 
 end

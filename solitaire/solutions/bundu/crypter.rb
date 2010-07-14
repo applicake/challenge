@@ -28,16 +28,11 @@ class Bundu::Crypter
     encrypted.gsub!(/[^A-Z]/, '')
     result = []
     self.deck.reload
-    # keystream = deck.generate_keystream(encrypted.length)
     encrypted.split('').each_with_index do |char, index|
-      if char.match(/[A-Z]/i)
-        code = CHARSET.index(char) 
-        decrypted = code -  deck.generate_keystream_number
-        decrypted = 26 + decrypted if decrypted < 0
-        result << CHARSET[decrypted]
-      else
-        result << char
-      end
+      code = CHARSET.index(char) 
+      decrypted = code -  deck.generate_keystream_number
+      decrypted = 26 + decrypted if decrypted < 0
+      result << CHARSET[decrypted]
     end
     result.join('').scan(/.{1,5}/).join(' ')
   end
