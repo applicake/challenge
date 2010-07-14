@@ -21,9 +21,9 @@ module Challenge
       before.call if before
       time = nil
       $stdout, old_stdout = StringIO.new, $stdout
-      ::Benchmark.bm do |x|
+      ::Benchmark.bm(iterations) do |x|
         report = x.report("#{name} - #{use}:") do
-          iterations.times { action.call }
+          action.call
         end
         time = report.real
       end
