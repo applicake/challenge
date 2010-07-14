@@ -7,7 +7,7 @@ Challenge::Benchmark.new do
     @instance = klass.new
   end
   action do
-    secret = @instance.encrypt('Aa@' * 500)
+    secret = @instance.encrypt('Aa@' * 5000)
     plain = @instance.decrypt secret
   end
 end

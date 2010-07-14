@@ -25,7 +25,7 @@ end
 class Keystream 
   attr_reader :keystream 
   def initialize(length) # 0 - A joker , -1 - B joker
-    @keystream = ''
+    @keystream = []
     @counter = 0
     @deck = Array.new(52) {|i| i+1} << 0 << -1  
     while @counter < length  do 
@@ -69,7 +69,7 @@ class Keystream
      number  = @deck[0] 
      number = -1 if number  == 0 
      if (letter_int = @deck[number]) > 0 
-       @keystream << LETTERS[letter_int -1] #.convert_to_s #unless letter_int < 1  
+       @keystream << LETTERS_HASH[ LETTERS[letter_int -1]]  #.convert_to_i #.convert_to_s #unless letter_int < 1  
        @counter = @counter + 1 
      end 
   end 
@@ -88,27 +88,29 @@ class SolitaireCipher
     else
       @lenght = @coded_message.length 
     end 
-    @keystream = Keystream.new(@lenght).keystream.split('').collect(&:convert_to_i)
+    @keystream = Keystream.new(@lenght).keystream
   end 
   
   def code
     raise 'There is no message to be coded!' unless @message 
-    coded_message = []
-    @message.split('').each_with_index do |letter, index|
-      coded_message << ' ' if index % 5 == 0 and index != 0 
-      coded_message << (( sum = letter.convert_to_i + @keystream[index]) > 26 ? sum - 26: sum).convert_to_s
+    coded_message = ''
+    index = 0 
+    @message.each_char do |letter|
+      coded_message << LETTERS[(( sum = LETTERS_HASH[letter] + @keystream[index]) > 26 ? sum - 26: sum) - 1] #.convert_to_s
+      index = index + 1 
     end 
-    @coded_message = coded_message.join 
+    @coded_message = coded_message.scan(/.{1,5}/).join(' ')
   end 
 
   def decode
     raise 'There is no message to be decoded!' unless @coded_message 
-    decoded_message = []
-    @coded_message.split('').each_with_index do |letter, index|
-      decoded_message << ' ' if index % 5 == 0 and index != 0 
-      decoded_message << (( diff = letter.convert_to_i - @keystream[index]) > 0 ? diff : diff + 26).convert_to_s
+    decoded_message = ''
+    index = 0 
+    @coded_message.each_char do |letter|
+      decoded_message << LETTERS[(( diff = LETTERS_HASH[letter] - @keystream[index]) > 0 ? diff : diff + 26) -1 ] #.convert_to_s
+      index = index + 1 
     end 
-    @message = decoded_message.join 
+    @message = decoded_message.scan(/.{1,5}/).join(' ')
   end
 end 
 
