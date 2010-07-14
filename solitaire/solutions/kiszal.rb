@@ -67,7 +67,7 @@ class Keystream
      @deck =  second_part + first_part + [@deck[53]]
     #6 
      number  = @deck[0] 
-     number = -1 if number  == 0 
+     number = -1 if number  == 0  
      if (letter_int = @deck[number]) > 0 
        @keystream << LETTERS_HASH[ LETTERS[letter_int -1]]  #.convert_to_i #.convert_to_s #unless letter_int < 1  
        @counter = @counter + 1 
@@ -161,4 +161,4 @@ end
 #printer = RubyProf::FlatPrinter.new(result)
 #printer.print(STDOUT, 0)
 #
-#
+
