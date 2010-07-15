@@ -29,7 +29,7 @@ class Bundu::Deck < Array
   def move_card(element, places)
     dest = index(element) + places
     if dest >= self.cached_length
-      dest = dest % self.cached_length
+      dest = dest - self.cached_length
       dest = 1 if dest == 0
     end
     self.insert(dest, delete(element))
@@ -38,14 +38,13 @@ class Bundu::Deck < Array
   def triple_cut(card_a, card_b)
     a, b = index(card_a), index(card_b)
     b, a = a, b if a > b
-    top, bottom, middle = self[0..a-1], self[b+1..self.cached_length-1], self[a..b]
+    top, bottom, middle = self[0, a], self[b+1, self.cached_length-b+1], self[a, b-a+1]
     self.replace bottom + middle + top
   end
 
-  def count_cut
-    cut, rest = self[0, last], self[last..self.cached_length-1]
-    last_card = rest.pop
-    self.replace rest + cut + [last_card]
+  def count_cut    
+    cut = self.slice!(0, last)
+    self.insert(self.cached_length - last - 1, *cut)
   end
     
   def generate_keystream_number
@@ -60,9 +59,8 @@ class Bundu::Deck < Array
     # 5. Perform a count cut using the value of the bottom card
     count_cut unless last > 52
     # 6. Fetch the keystream letter
-    offset = self.first < 53 ? self.first : 53
-    letter = self[offset]
-    letter < 53 ? (letter % 26) : generate_keystream_number
+    offset = first < 53 ? first : 53
+    self[offset] < 53 ? (self[offset] % 26) : generate_keystream_number
   end
 
 end
