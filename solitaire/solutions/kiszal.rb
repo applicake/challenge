@@ -1,9 +1,12 @@
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+LETTERS_HACK = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZa'.split('')
+
 
 LETTERS_HASH = {}
 LETTERS.each_with_index do |letter, index|
   LETTERS_HASH[letter] = index + 1 if index < 26  
 end
+LETTERS_HASH["a"] = ''
 
 class String
    def convert_to_i
@@ -24,54 +27,80 @@ end
 
 class Keystream 
   attr_reader :keystream 
-  def initialize(length) # 0 - A joker , -1 - B joker
-    @keystream = []
+  def initialize(length) # 53 - A joker , -1 - B joker
+    @keystream = ''
     @counter = 0
-    @deck = Array.new(52) {|i| i+1} << 0 << -1  
+    @indexA = 52
+    @indexB = 53
+    @deck = Array.new(53) {|i| i+1} << -1   
     while @counter < length  do 
-      create
+      self.create
     end 
   end 
 
   def create
      #2
-     new_jokerA_index = @deck.index(0) + 1
+     
+     new_jokerA_index = @indexA + 1
      new_jokerA_index = 1 if new_jokerA_index == 54
-     @deck.insert(new_jokerA_index, @deck.delete(0))
+     @deck.insert(new_jokerA_index, @deck.delete_at(@indexA) )
+     
+
+     #indexB cache update   
+     if  new_jokerA_index >= @indexB and @indexB > @indexA
+       @indexB = @indexB - 1
+     elsif @indexB > new_jokerA_index and @indexB < @indexA
+       @indexB = @indexB + 1 
+     end
+
+     @indexA = new_jokerA_index 
+
+
      #3 
-     new_jokerB_index = @deck.index(-1) + 2
+     new_jokerB_index = @indexB + 2
      if new_jokerB_index > 53 
        new_jokerB_index = new_jokerB_index.modulo(53)
      end
-     @deck.insert(new_jokerB_index , @deck.delete(-1))
+     @deck.insert(new_jokerB_index , @deck.delete_at(@indexB))
+     
+     #indexA cache update   
+     if new_jokerB_index >= @indexA and @indexB < @indexA
+       @indexA = @indexA - 1 
+     elsif new_jokerB_index < @indexA and @indexB > @indexA
+       @indexA = @indexA + 1 
+     end 
+
+     @indexB = new_jokerB_index 
     #4 
-    if (joker1 = @deck.index(0)) < (joker2 = @deck.index(-1))
-       top_joker_index = joker1
-       bottom_joker_index = joker2
+
+    if  @indexA < @indexB
+       top_joker_index = @indexA
+       bottom_joker_index = @indexB
      else 
-       top_joker_index = joker2
-       bottom_joker_index = joker1
+       top_joker_index = @indexB
+       bottom_joker_index = @indexA
      end 
      
      top_part, middle_part, bottom_part = [], [], []
 
-     top_part = @deck[ 0..(top_joker_index - 1 ) ] if top_joker_index != 0
-     bottom_part = @deck[ (bottom_joker_index + 1)..53 ] if bottom_joker_index != 53
+     top_part = @deck[ 0..(top_joker_index - 1 ) ] #if top_joker_index != 0
+     bottom_part = @deck[ (bottom_joker_index + 1)..53 ] #if bottom_joker_index != 53
      middle_part = @deck[ top_joker_index..bottom_joker_index]
-    
-     @deck = bottom_part + middle_part + top_part
+     
+     @deck =  bottom_part + middle_part + top_part
 
      #5 
      first_part = @deck[ 0..(@deck[53]-1)] 
      second_part = @deck[ (@deck[53])..52] 
      @deck =  second_part + first_part + [@deck[53]]
     #6 
-     number  = @deck[0] 
-     number = -1 if number  == 0  
-     if (letter_int = @deck[number]) > 0 
-       @keystream << LETTERS_HASH[ LETTERS[letter_int -1]]  #.convert_to_i #.convert_to_s #unless letter_int < 1  
-       @counter = @counter + 1 
+     if (letter_int = @deck[@deck[0]]) > 0 
+       @keystream << LETTERS_HASH[ LETTERS_HACK[letter_int -1]]  #.convert_to_i #.convert_to_s #unless letter_int < 1  
+       @counter = @counter + 1 unless letter_int == 53 
      end 
+     #joker index cache update
+     @indexA = @deck.index(53) 
+     @indexB = @deck.index(-1) 
   end 
 end
 
@@ -96,10 +125,10 @@ class SolitaireCipher
     coded_message = ''
     index = 0 
     @message.each_char do |letter|
-      coded_message << LETTERS[(( sum = LETTERS_HASH[letter] + @keystream[index]) > 26 ? sum - 26: sum) - 1] #.convert_to_s
+      coded_message << LETTERS[ LETTERS_HASH[letter] + @keystream[index] - 1] #.convert_to_s
       index = index + 1 
     end 
-    @coded_message = coded_message.scan(/.{1,5}/).join(' ')
+    @coded_message = coded_message.gsub!(/.{1,5}/) {|m| m = m + ' '}.gsub!(/ $/, '')
   end 
 
   def decode
@@ -107,10 +136,10 @@ class SolitaireCipher
     decoded_message = ''
     index = 0 
     @coded_message.each_char do |letter|
-      decoded_message << LETTERS[(( diff = LETTERS_HASH[letter] - @keystream[index]) > 0 ? diff : diff + 26) -1 ] #.convert_to_s
+      decoded_message << LETTERS[ LETTERS_HASH[letter] - @keystream[index] -1 ] #.convert_to_s
       index = index + 1 
     end 
-    @message = decoded_message.scan(/.{1,5}/).join(' ')
+    @message = decoded_message.gsub!(/.{1,5}/) {|m| m = m + ' '}.gsub!(/ $/, '')
   end
 end 
 
@@ -160,5 +189,5 @@ end
 ## Print a flat profile to text
 #printer = RubyProf::FlatPrinter.new(result)
 #printer.print(STDOUT, 0)
-#
+
 
