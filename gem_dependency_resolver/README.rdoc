@@ -1,0 +1,53 @@
+== Gem Dependency Resolver
+
+Important note: When solving the problem please don't use Ruby Standard Library.
+In other words, if a lib needs to be explicitly required, don't use it.
+
+This week's challenge can be described as resolving gem dependencies, but it is,
+ of course, an example of a more generic problem. Imagine you need to install 
+ a bulk of gems, some of which are dependent on some others. For each gem you 
+ want to install there is an information which gems it depends on, and you want
+ to have all the gems ordered in such a way that when you install them one by one
+ you will not violate any dependency constraint.
+ 
+=== The input
+
+The input is a hash, lets call it "gems". The keys of the hash are strings
+representing the names of the gems you want to install. The values of the hash are arrays.
+The elements of such array are strings representing the names of the gems that the key-gem
+depends on.
+
+Example:
+
+  gems = {
+    'Gem-1' => ['Gem-2', 'Gem-3'],
+    'Gem-2' => ['Gem-3'],
+    'Gem-3' => []
+  }
+  
+this translates to:
+* Gem-1 depends on Gem-2 and Gem-3
+* Gem-2 depends on Gem-3
+* Gem-3 does not depend on anything
+
+=== The output
+
+The output is an array (lets call it "result") containing all elements from 
+gems.keys and satisfying the following condition: given element1 and element2 are 
+elements of result and index of element1 in result is lower than index of element2
+in result then !gems[element1].include?(element2).
+
+If the input hash contains a cycle then an exception should be raised.
+
+=== Solution format
+
+Let's assume your file is called solutions/mysolution.rb
+
+  class Mysolution
+  
+    # gems is a hash
+    def resolve(gems)
+      # This method returns an array
+    end
+    
+  end
