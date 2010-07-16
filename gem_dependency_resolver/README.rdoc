@@ -37,7 +37,8 @@ gems.keys and satisfying the following condition: given element1 and element2 ar
 elements of result and index of element1 in result is lower than index of element2
 in result then !gems[element1].include?(element2).
 
-If the input hash contains a cycle then an exception should be raised.
+If the input hash contains a cycle (eg. gem-1 depends on gem-2 and gem-2 depends on
+gem-1) then an exception should be raised.
 
 === Solution format
 
