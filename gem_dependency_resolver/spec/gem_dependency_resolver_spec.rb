@@ -1,15 +1,13 @@
-# Ten spec to narazie typowy spec a nie Challenge::Spec bo coś mi nie chciało
-# działać :( . Jak pogadam z Marcinem to podmienię.
+require File.dirname(__FILE__) + '/../../shared/spec' unless defined?(Challenge)
 
-require File.dirname(__FILE__) + "/../solutions/resolver.rb"
+Challenge::Spec.new do
 
-describe Resolver do
-  
-  before :all do
-    @resolver = Resolver.new
+  before do
+    klass = @solution.constant
+    @resolver = klass.new
   end
   
-  it "should correctly resolve dependencies" do
+  spec "should correctly resolve dependencies" do
     gems = {
       'aaa' => ['bbb', 'ccc', 'ddd', 'eee'],
       'bbb' => ['ccc', 'ddd', 'eee'],
@@ -32,7 +30,7 @@ describe Resolver do
     end
   end
   
-  it "should raise error on cycle" do
+  spec "should raise error on cycle" do
     gems = {
       'aaa' => ['bbb'],
       'bbb' => ['ccc'],
@@ -41,4 +39,4 @@ describe Resolver do
     lambda { @resolver.resolve(gems) }.should raise_error
   end
   
-end 
+end
