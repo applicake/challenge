@@ -2,7 +2,7 @@ require 'stringio'
 module Challenge
   class Benchmark
     extend DslAccessor
-    dsl_accessor :name, :iterations, :action, :before, :use, :solutions, :solution
+    dsl_accessor :name, :iterations, :action, :before, :use, :solutions, :solution, :verbose
 
     def initialize(name = nil, &block)
       self.name name ||  Dir.pwd.split('/').last.to_s
@@ -20,14 +20,14 @@ module Challenge
     def perform
       before.call if before
       time = nil
-      $stdout, old_stdout = StringIO.new, $stdout
+      $stdout, old_stdout = StringIO.new, $stdout unless verbose
       ::Benchmark.bm(iterations) do |x|
         report = x.report("#{name} - #{use}:") do
           action.call
         end
         time = report.real
       end
-      $stdout = old_stdout
+      $stdout = old_stdout unless verbose
       render time
     end
     
