@@ -38,5 +38,14 @@ Challenge::Spec.new do
     }
     lambda { @resolver.resolve(gems) }.should raise_error
   end
+
+  spec "should find nested dependencies" do
+    gems = {
+      'aaa' => ['ccc'],
+      'bbb' => [],
+      'ccc' => ['bbb']
+    }
+    @resolver.resolve(gems).should  == ['bbb', 'ccc', 'aaa']
+  end
   
 end
