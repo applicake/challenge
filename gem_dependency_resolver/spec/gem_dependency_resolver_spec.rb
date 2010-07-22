@@ -24,12 +24,18 @@ Challenge::Spec.new do
     }
     @resolver.resolve(gems).should satisfy do |result|
       result == ['ddd', 'ccc', 'bbb', 'aaa'] or 
-        result == ['ccc', 'ddd', 'bbb', 'aaa'] or
-        result == ['ccc', 'bbb', 'ddd', 'aaa'] or
-        result == ['ccc', 'bbb', 'aaa', 'ddd']
+      result == ['ccc', 'ddd', 'bbb', 'aaa'] or
+      result == ['ccc', 'bbb', 'ddd', 'aaa'] or
+      result == ['ccc', 'bbb', 'aaa', 'ddd']
     end
+    gems = {
+      'aaa' => ['bbb', 'ccc'],
+      'bbb' => [],
+      'ccc' => [],
+      'ddd' => 'aaa'
+    }
   end
-  
+
   spec "should raise error on cycle" do
     gems = {
       'aaa' => ['bbb'],
@@ -47,5 +53,32 @@ Challenge::Spec.new do
     }
     @resolver.resolve(gems).should  == ['bbb', 'ccc', 'aaa']
   end
+  
+  spec "should correctly resolve dependecies in benchmark" do
+      @gems = {}
+      for i in 1..250
+        deps = []
+        j = 2
+        while i * j <= 250
+          deps << (i * j).to_s
+          j += 1
+        end
+        @gems[i.to_s] = deps
+      end
+      puts "Gem '60' deps: #{@gems['60'].inspect}"
+      dependencies = @gems.dup
+      result = @resolver.resolve(@gems)
+      puts result
+      result.length.should == dependencies.length
+      positions = {}
+      result.each_with_index do |gem, index|
+        positions[gem] = index
+      end
+      result.each do |gem|
+        dependencies[gem].each do |previous|
+          positions[previous].should < positions[gem]
+        end
+      end
+    end
   
 end
