@@ -1,0 +1,3 @@
+class Hashish
+
+end
