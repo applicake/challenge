@@ -8,6 +8,18 @@ Challenge::Spec.new do
   end
   
   spec "should correctly resolve dependencies" do
+    gems = {}
+    result = []
+    str = 'a' 
+    (1..100000).each do |t| 
+      result.unshift str 
+      gems[str] = [str.next]
+      str = str.next 
+    end  
+    gems[str] = []  
+    result.unshift str 
+    @resolver.resolve(gems).should == result
+
     gems = {
       'aaa' => ['bbb', 'ccc', 'ddd', 'eee'],
       'bbb' => ['ccc', 'ddd', 'eee'],
