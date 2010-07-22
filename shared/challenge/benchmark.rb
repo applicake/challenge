@@ -22,6 +22,7 @@ module Challenge
       unless ARGV.include?('--quiet')
         puts "Challenge: #{self.name}\n\n"
       end
+      trap('INT') { puts "\rSkipping #{use}..."; exit }
       solution Challenge::Solution.find(self.name, use)
       perform
       puts "\nThe given time is an average for one iteration" unless ARGV.include?('--quiet')
