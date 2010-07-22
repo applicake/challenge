@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../shared/benchmark' # unless defined?(Challenge)
 
 Challenge::Benchmark.new do
-  iterations 10
+  iterations 1
+  verbose true
   before do
     klass = solution.constant
     @instance = klass.new
