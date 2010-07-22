@@ -1,4 +1,5 @@
 require 'stringio'
+require 'benchmark'
 module Challenge
   class Benchmark
     include ::Benchmark
@@ -10,22 +11,35 @@ module Challenge
       instance_eval(&block)
       use ARGV[0] 
       if !use
-        solutions = Challenge::Solution.load(self.name)
-        puts "Challenge: #{self.name}\n"
-        puts "Running #{solutions.size} solution(s) at #{iterations} iteration(s)...\n\n"
-        
+        @solutions = Challenge::Solution.load(self.name)
+        title 
+        header
         # If nothing is supplied, run all, but in separate processes
-        solutions.each { |solution| system "ruby benchmark.rb #{solution.name} --quiet" }
-        puts "\nThe given time is an average for one iteration"
+        @solutions.each { |solution| system command(solution) }
+        footer
         exit
       end
-      unless ARGV.include?('--quiet')
-        puts "Challenge: #{self.name}\n\n"
-      end
       trap('INT') { puts "\rSkipping #{use}..."; exit }
+      title("\n") unless OPTIONS.include?('--quiet')
       solution Challenge::Solution.find(self.name, use)
       perform
-      puts "\nThe given time is an average for one iteration" unless ARGV.include?('--quiet')
+      footer unless OPTIONS.include?('--quiet')
+    end
+    
+    def title(addon = nil)
+      puts "Challenge: #{self.name}#{addon}\n"      
+    end
+    
+    def header
+      puts "Running #{@solutions.size} solution(s) at #{iterations} iteration(s)...\n\n"
+    end
+    
+    def footer
+      puts "\nThe given time is an average for one iteration" 
+    end
+    
+    def command(solution)
+      "ruby benchmark.rb #{solution.name} --quiet"
     end
     
     def perform
