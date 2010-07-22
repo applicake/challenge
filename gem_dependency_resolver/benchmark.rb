@@ -6,10 +6,10 @@ Challenge::Benchmark.new do
     klass = solution.constant
     @instance = klass.new
     @gems = {}
-    for i in 1..25000
+    for i in 1..2500
       deps = []
       j = 2
-      while i * j <= 25000
+      while i * j <= 2500
         deps << (i * j).to_s
         j += 1
       end

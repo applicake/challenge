@@ -65,10 +65,10 @@ Challenge::Spec.new do
         end
         @gems[i.to_s] = deps
       end
-      puts "Gem '60' deps: #{@gems['60'].inspect}"
+      #puts "Gem '60' deps: #{@gems['60'].inspect}"
       dependencies = @gems.dup
       result = @resolver.resolve(@gems)
-      puts result
+      #puts result
       result.length.should == dependencies.length
       positions = {}
       result.each_with_index do |gem, index|
