@@ -11,7 +11,7 @@ Challenge::Spec.new do
     gems = {}
     result = []
     str = 'a' 
-    (1..100000).each do |t| 
+    (1..3500).each do |t| 
       result.unshift str 
       gems[str] = [str.next]
       str = str.next 
