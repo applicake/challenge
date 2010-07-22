@@ -19,7 +19,7 @@ module Challenge
     end
     
     def command(solution)
-      "ruby profile.rb #{solution.name} --quiet"
+      "ruby benchmark.rb #{solution.name} --quiet --profile" 
     end
         
     def render(result)
