@@ -1,0 +1,20 @@
+== Hashish
+
+
+
+You task is to implement the Hashish container.
+
+It should be a simple key value store. 
+
+Keys can be only instances of String.
+
+Values can be instances of any Class.
+
+Your task is to implement five methods of Hashish container. All them are equally important and should run as fast as possible.
+Metaprogramming is forbidden; you cannot use neither Hash, OrderedHash nor Set classes. String#hash method is forbidden as well. You cannot require anything. Oh and you can't use any of these characters in your source {,},%,",',`
+
+Please try not to outwit the system and make better algorithm instead. Your solution must pass existing specs but additional might be added.
+
+Benchmark will be ready this weekend. But please expect it to be large, mean and thorough.
+
+Remember that all methods are equally important.
