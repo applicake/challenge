@@ -1,10 +1,6 @@
 == Hashish
 
-
-
-You task is to implement the Hashish container.
-
-It should be a simple key value store. 
+Hashish container is a simple key value store. 
 
 Keys can be only instances of String.
 
@@ -18,3 +14,19 @@ Please try not to outwit the system and make better algorithm instead. Your solu
 Benchmark will be ready this weekend. But please expect it to be large, mean and thorough.
 
 Remember that all methods are equally important.
+
+Following are those five methods waiting to be implemented:
+
+store(key, value) # stores value ready at a key,
+                  # it will overwrite any existing value stored at this key 
+                  # or adds new value when key does not exist in a container 
+
+fetch(key)        # fetches value stored at key
+                  # raises an error when key does not exist
+                  
+delete(key)       # deletes value stored at key
+                  # raises an error when key does not exist
+                  
+has_key?(key)     # returns true if key exists in container and false otherwise
+
+length            # returns number of stored values
