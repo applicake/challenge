@@ -86,11 +86,13 @@ Challenge::Spec.new do
   end
 
   spec "does not invoke forbidden methods" do
-    key, value = stub
-    Hash.should_not_receive(:new)
+    key, value = "key", "value"
+
+      
     key.stub(:dup).and_return(key)
     key.stub(:clone).and_return(key)
     key.should_not_receive(:hash)
+    Hash.should_not_receive(:new)
 
     hashish = @solution.constant.new
     hashish.store(key, value)
