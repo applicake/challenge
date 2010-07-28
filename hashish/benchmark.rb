@@ -9,7 +9,9 @@ LENGTHS = 1000
 STRINGS = 1
 
 def key(index)
-  index.to_s.rjust(STRINGS)
+  index.to_s.rjust(STRINGS, 'a')
+  #key[index] = 'z'
+  #key
 end
 
 srand(666)
@@ -86,18 +88,15 @@ Challenge::Benchmark.new do
   iterations ITERATIONS
   title " length"
   before do 
-    @hashishes = []
+    @hashish = solution.constant.new 
     LENGTHS.times do |i|
-      @hashishes <<  solution.constant.new
-      (0..i).each do |j| 
-        @hashishes[i].store(key(j), "value")
-      end
+      @hashish.store(key(i), "value")
     end
   end
   
   action do
     LENGTHS.times do |i|
-      @hashishes[i].length
-    end    
+      @hashish.length
+    end
   end
 end
