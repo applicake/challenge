@@ -1,17 +1,15 @@
 require File.dirname(__FILE__) + '/../shared/benchmark' unless defined?(Challenge)
 
-ITERATIONS = 10
+ITERATIONS = 1
 STORES = 1000
 FETCHES = 1000
 DELETES = 1000
 HAS_KEYS = 1000
 LENGTHS = 1000
-STRINGS = 1000
+STRINGS = 1
 
 def key(index)
-  key = 'a' * STRINGS
-  key[index] = 'z'
-  key
+  index.to_s.rjust(STRINGS)
 end
 
 srand(666)
