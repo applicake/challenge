@@ -7,6 +7,13 @@ Challenge::Spec.new do
     @hashish = klass.new
   end
   
+  spec "store and fetch resolve hash conflicts" do
+    @hashish.store "aaaaaa", "first"
+    @hashish.store "qaaag", "second"
+    @hashish.fetch("aaaaaa").should == "first"
+    @hashish.fetch("qaaag").should == "second"
+  end
+
   %w[fetch delete].each do |method|
     spec "raises error when trying to #{method} nonexistent value" do
       expect {
