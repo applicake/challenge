@@ -1,0 +1,33 @@
+== Longest Repeated Substring
+
+This week's task is to write a script that finds the longest repeated substring in a given text.
+
+Repeated substrings may not overlap. If more than one substring 
+is repeated with the same length, you should print all of them, separated with spaces. 
+If there is no repeated substring, the result is an empty string ("").
+
+
+Make sure your code runs efficiently when passed a large text.
+
+=== The input
+
+The input should be a string (preferably with repeated substring)
+
+
+=== The output
+
+The output should be the longest repeated substring of a input text
+
+
+=== Solution format
+
+Let's assume your file is called solutions/mysolution.rb
+
+  class Mysolution
+  
+    def fetch_substring(text)
+      # This method returns a string
+    end
+    
+  end
+
