@@ -17,7 +17,7 @@ Challenge::Spec.new do
   end
   
   spec "Text with spaces" do
-    @substring.fetch_substring('repeateated substring with spaces').should == 'eat'
+    @substring.fetch_substring('repeateat substring with spaces').should == 'eat'
   end
   
   spec "Text with two substrings of same length" do

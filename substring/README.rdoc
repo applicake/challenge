@@ -1,9 +1,13 @@
 == Longest Repeated Substring
 
+The base of this challenge was taken from the Ruby Quiz:
+http://rubyquiz.com/quiz153.html
+
 This week's task is to write a script that finds the longest repeated substring in a given text.
 
 Repeated substrings may not overlap. If more than one substring 
 is repeated with the same length, you should print all of them, separated with spaces. 
+For the needs of this challenge we don't count single letters as substrings.
 If there is no repeated substring, the result is an empty string ("").
 
 
