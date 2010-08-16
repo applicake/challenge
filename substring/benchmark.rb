@@ -4,9 +4,10 @@ Challenge::Benchmark.new do
   iterations 1000
   before do
     klass = solution.constant
-    @instance = klass.new
   end
   action do
+    @instance = klass.new
     @instance.fetch_substring('verylongwordlonglongblebleblelongwordlongwordlongveryveryverybleverylongwordveryveryveryverylongwordveryveryverybleblewordword')
   end
+  
 end
