@@ -9,7 +9,7 @@ Challenge::Spec.new do
   end
   
   spec "Banan test" do
-    @substring.fetch_substring("banan")).should == "an" 
+    @substring.fetch_substring("banan").should == "an" 
   end
   
   spec "No substring text" do
