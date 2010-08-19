@@ -1,0 +1,89 @@
+
+body{ background-color: #333333; text-align: center; }
+
+ul { 
+  list-style-type: none;
+  width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+ul li {
+  float: left; 
+  display: inline; 
+}
+
+ul li div.photo, x:-moz-any-link, x:default  {
+  font-size: 3px;
+  line-height: 3px;
+  border: 1px solid black;
+  color: #000000;
+}
+
+ul li:nth-child(even) div.photo{
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+}
+
+ul li div.photo{
+  -moz-box-shadow:0 3px 6px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+  -webkit-transform: rotate(2deg);
+  -webkit-transition: -webkit-transform .15s linear; 
+  -moz-transform: rotate(2deg);
+  background:none repeat scroll 0 0 #FFFFFF;
+  color:#333333;
+  display:inline;
+  float:left;
+  margin:0 0 27px 30px;
+  padding:15px 15px 45px;
+  text-align:center;
+  text-decoration:none;
+  /*width:auto; */
+}
+
+ul li div.photo:hover {
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  -moz-transform: scale(1.25);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.25);
+  position: relative;
+  z-index: 5;
+}
+    
+div.frame{
+  width: 300px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+}
+
+div.photo{
+  background-color: #ffffff;
+  width: 250px;
+  height: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 3px;
+}
+
+div.name{
+  color:#333333;
+  font-family:"Marker Felt",sans-serif;
+  font-size:18px;
+  margin-top: 10px;
+}
+
+div.cover{
+  background-color: red;
+}
+
+div.no_one{
+  width: 265px;
+}
+
+.clear{
+  clear: both;
+}
