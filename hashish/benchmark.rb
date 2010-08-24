@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../shared/benchmark' unless defined?(Challenge)
 
 ITERATIONS = 1
-STORES = 1000
-FETCHES = 1000
-DELETES = 1000
-HAS_KEYS = 1000
-LENGTHS = 1000
+STORES = 10000
+FETCHES = 10000
+DELETES = 10000
+HAS_KEYS = 10000
+LENGTHS = 10000
 STRINGS = 1
 
 def key(index)
