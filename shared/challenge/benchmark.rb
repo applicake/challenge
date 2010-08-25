@@ -4,11 +4,12 @@ module Challenge
   class Benchmark
     include ::Benchmark
     extend DslAccessor
-    dsl_accessor :name, :iterations, :action, :before, :use, :solutions, :solution, :verbose
+    dsl_accessor :name, :iterations, :action, :before, :use, :solutions, :solution, :verbose, :time
 
     def initialize(name = nil, &block)
       self.name name ||  Dir.pwd.split('/').last.to_s
       instance_eval(&block)
+      self.time :average unless [:total, :average].include?(self.time)
       use ARGV[0] 
       if !use
         @solutions = Challenge::Solution.load(self.name)
@@ -44,14 +45,18 @@ module Challenge
     
     def perform
       before.call if before
-      time = nil
+      result = nil
       $stdout, old_stdout = StringIO.new, $stdout unless verbose
       report = measure do
         iterations.times { action.call }
       end
-      time = report.real / iterations.to_f # get the average time
+      if self.time.to_s == 'average'
+        result = report.real / iterations.to_f # get the average time
+      else
+        result = report.real
+      end
       $stdout = old_stdout unless verbose
-      render time
+      render result
     end
     
     def render(time)
