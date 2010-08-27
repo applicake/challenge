@@ -1,0 +1,36 @@
+== Weird Numbers
+
+This is task from RubyQuiz http://rubyquiz.com/quiz57.html
+
+You need to write the algorithm that will find all weird numbers less then the input value.
+
+Weird number is a number for which the sum of the proper divisors (divisors including 1 but not itself) of the number is greater than the number, but no subset of those divisors sums to the number itself.
+
+For more information see Wikipedia:
+http://en.wikipedia.org/wiki/Weird_number
+
+Winner will be the one who will have the fastest solution.
+
+
+=== The input
+
+The input should be an integer value
+
+
+=== The output
+
+The output should be the array of all weird numbers smaller then the input value
+
+
+=== Solution format
+
+Let's assume your file is called solutions/mysolution.rb
+
+  class Mysolution
+  
+    def fetch_less_then(integer)
+      # This method returns an Array
+    end
+    
+  end
+
