@@ -7,7 +7,7 @@ Challenge::Benchmark.new do
   end
   action do
     @instance = @klass.new
-    @instance.fetch_less_then(10000)
+    @instance.fetch_less_then(1000)
   end
   
 end
