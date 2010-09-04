@@ -1,0 +1,11 @@
+== IP to Country
+
+This challenge was taken form RubyQuiz#139
+
+Your program should accept an IP address as a argument for 'find_country_by_ip' method and return the two letter code for the country that IP is assigned in. You can find a database for the matching at:
+
+http://software77.net/cgi-bin/ip-country/geo-ip.pl
+
+enjoy!
+
+
