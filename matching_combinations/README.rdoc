@@ -1,0 +1,43 @@
+== Matching Combinations
+
+You need to write the algoritm that will find all matching combinations from inserted data.
+
+The matching combination is a combination of numbers (without repetition) which sum is equal to the givent number.
+
+=== Example
+
+For the [1,2,3,4,5,6] set, and the 6 number matching combinations are:
+
+1+2+3 = 6
+1+3+2 = 6
+2+3+1 = 6
+2+1+3 = 6
+3+2+1 = 6
+3+1+2 = 6
+3+3 = 6
+2+4 = 6
+4+2 = 6
+1+5 = 6
+5+1 = 6
+
+The results should be ordered by amount of numbers in combination (look at example).
+
+=== The input
+
+The input should be an array of numbers, and the integer, as the match value.
+
+=== The output
+
+The output should be the nested array of all matching combinations.
+
+=== Solution format
+
+Your solution should be a file called solutions/mysolution.rb, and looks like:
+
+    class Mysolution
+      
+      def fetch_matching_comb(array, int)
+        # returning an Array
+      end
+
+    end:
