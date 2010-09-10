@@ -14,7 +14,7 @@ The results should be ordered by amount of numbers in combination (look at examp
 
 === The input
 
-The input should be an array of numbers, and the integer, as the match value.
+The input should be an array of numbers, and an integer, as the match value.
 
 === The output
 
@@ -22,7 +22,7 @@ The output should be the nested array of all matching combinations.
 
 === Solution format
 
-Your solution should be a file called solutions/mysolution.rb, and looks like:
+Your solution should be a file called solutions/mysolution.rb, and look like:
 
     class Mysolution
       
