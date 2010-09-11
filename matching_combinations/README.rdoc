@@ -4,13 +4,15 @@ You need to write the algoritm that will find all matching combinations from ins
 
 The matching combination is a combination of numbers (without repetition) which sum is equal to the given number.
 
+Winner is author of the fastest solution.
+
 === Example
 
 For the [1,2,3,4,5,6] set, and the 6 number matching combinations are:
 
 [[3,2,1], [3,1,2], [2,3,1], [2,1,3], [1,3,2], [1,2,3], [5,1], [4,2], [3,3], [2,4], [1,5], [6]]
 
-The results should be sorted, like integers, made up with numbers in combination (look at example).
+The results should be sorted in descending order, like integers, made up with numbers in combination (look at example).
 
 === The input
 
