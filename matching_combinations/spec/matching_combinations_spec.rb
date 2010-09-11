@@ -24,18 +24,18 @@ Challenge::Spec.new do
     @object.fetch_matching_comb(array, int).should == result
   end
 
-  spec "4 for (1..8), and 4" do
+  spec "3 for (1..8), and 4" do
     array = (1..8).to_a
     int = 4
-    result = [[3,1], [2,2], [1,3], [4]]
+    result = [[3,1], [1,3], [4]]
     
     @object.fetch_matching_comb(array, int).should == result
   end
 
-  spec "12 for (1..6), and 6" do
+  spec "11 for (1..6), and 6" do
     array = (1..6).to_a
     int = 6
-    result = [[3,2,1], [3,1,2], [2,3,1], [2,1,3], [1,3,2], [1,2,3], [5,1], [4,2], [3,3], [2,4], [1,5], [6]]
+    result = [[3,2,1], [3,1,2], [2,3,1], [2,1,3], [1,3,2], [1,2,3], [5,1], [4,2], [2,4], [1,5], [6]]
     
     @object.fetch_matching_comb(array, int).should == result
   end
