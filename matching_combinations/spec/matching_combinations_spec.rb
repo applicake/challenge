@@ -7,6 +7,14 @@ Challenge::Spec.new do
     @object = klass.new
     puts klass
   end
+  
+  spec "blabla" do
+    array = [-1,7]
+    int = 6
+    result = [[7,-1], [-1,7]]
+    
+    @object.fetch_matching_comb(array, int).should == result
+  end
 
   spec "0 for (1..4), and 12" do
     array = (1..4).to_a
