@@ -12,6 +12,8 @@ class Mariusz
         case candidate <=> sum
         when 1
           return []
+          # ML In order to pass specs with negative numbers this should be:
+          # return result
         when 0
           return result + [chosen + [candidate]]
         when -1
