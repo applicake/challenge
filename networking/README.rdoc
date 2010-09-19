@@ -1,0 +1,19 @@
+== Networking
+
+Your clients need custom tool for their networking needs. Basically they want to be able to define who is friend of whom dynamically, and then find a shortest chain of people that connects two persons.
+
+Yes I know. I told them about LinkedIn. 
+
+Anyway. You need to write a class with three methods: add_friendship(first, second), remove_friendship(first, second) and shortest_path(first, second). 
+
+Behaviour of these methods is pretty well defined in specs they provided. They spend some time on making up motivating messages for failing specs so go BDD to fully enjoy this task.
+
+If you have a question for anything not defined in specs, try to find an answer in your heart:) Everything is defined here and in specs. 
+
+Example in benchmark.rb can be made into a spec as well (with numbers changed) at the end of the competition.
+
+Your solution needs to finish in reasonable time. Which is at most 30 x time of a naive(?) solution that they provided (it will be revealed on the day of competition). 
+
+enjoy!
+
+
