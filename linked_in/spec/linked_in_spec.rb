@@ -31,28 +31,49 @@ Challenge::Spec.new do
 
   spec "fails to notice that Alice was eliminated from the social circle" do
     @obj.remove_friendship('Bob', 'Alice')
-    lambda{ @obj.shortest_path('Alice', 'Dick') }.should raise_error
-    lambda{ @obj.shortest_path('Alice', 'Bob') }.should raise_error
-    lambda{ @obj.shortest_path('Alice', 'Charlie') }.should raise_error
+    @obj.shortest_path('Alice', 'Dick').should == []
+    @obj.shortest_path('Alice', 'Bob').should == []
+    @obj.shortest_path('Alice', 'Charlie').should == []
   end
 
   spec "can't see that guys still know each other very well" do
     @obj.remove_friendship('Bob', 'Alice')
-    @obj.shortest_path('Bob', 'Dick').should == %[Bob Charlie Dick]
-    @obj.shortest_path('Charlie', 'Bob').should == %[Charlie Bob]
-    @obj.shortest_path('Dick', 'Charlie').should == %[Dick Charlie]
+    @obj.shortest_path('Bob', 'Dick').should == %w[Bob Charlie Dick]
+    @obj.shortest_path('Charlie', 'Bob').should == %w[Charlie Bob]
+    @obj.shortest_path('Dick', 'Charlie').should == %w[Dick Charlie]
   end
 
   spec "can't even find one way to Charlie" do
     @obj.add_friendship('Alice', 'Dick')
     path = @obj.shortest_path('Alice', 'Charlie')
-    path.length.should == 3
-    path[0].should == 'Alice'
-    (%w[Bob Dick] - path[1]).length should == 1
-    path[2].should == 'Charlie'
+    (path == %w[Alice Bob Charlie] or path == %w[Alice Dick Charlie]).should == true
   end
 
   spec "didn't admit that you know $h!t about Tarzan's and Jane's relationship" do
-    lambda{ @obj.shortest_path('Jane', 'Tarzan') }.should raise_error
+    @obj.shortest_path('Jane', 'Tarzan') == []
+  end
+
+  spec "doesn't ignore egoists" do
+    @obj.add_friendship("Fred", "Fred")
+    @obj.shortest_path("Fred", "Fred").should == [] 
+    @obj.shortest_path("Alice", "Alice").should == []
+  end
+
+  spec "is not prepared for a lot of friendship" do
+    lambda { 
+      @obj.add_friendship("Alice", "Bob") 
+      @obj.add_friendship("Alice", "Bob")  
+    }.should_not raise_error
+    @obj.shortest_path("Alice", "Bob").should == %w[Alice Bob]
+    @obj.shortest_path("Alice", "Charlie").should == %w[Alice Bob Charlie]
+  end
+  spec "is not ready for excessive hate" do
+    lambda { 
+      @obj.remove_friendship("Alice", "Bob") 
+      @obj.remove_friendship("Alice", "Bob")  
+    }.should_not raise_error
+    @obj.shortest_path("Alice", "Bob").should == []
+    @obj.shortest_path("Alice", "Charlie").should == []
+    @obj.shortest_path("Bob", "Charlie").should == %w[Bob Charlie]
   end
 end
