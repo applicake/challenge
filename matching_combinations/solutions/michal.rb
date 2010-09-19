@@ -1,4 +1,4 @@
-class Mysolution
+class Michal
 
   def fetch_matching_comb(array, int)
     current = {
@@ -20,9 +20,7 @@ class Mysolution
       if current.has_key? int
         current_components = []
         current[int].each do |data|
-        #  datas.each do |data|
-            current_components << data[:components]
-         # end
+          current_components << data[:components]
         end 
         result += current_components#.reverse
       end
