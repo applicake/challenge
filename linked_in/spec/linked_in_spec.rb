@@ -50,7 +50,7 @@ Challenge::Spec.new do
   end
 
   spec "didn't admit that you know $h!t about Tarzan's and Jane's relationship" do
-    @obj.shortest_path('Jane', 'Tarzan') == []
+    @obj.shortest_path('Jane', 'Tarzan').should == []
   end
 
   spec "doesn't ignore egoists" do
