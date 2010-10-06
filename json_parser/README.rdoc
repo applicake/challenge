@@ -1,0 +1,9 @@
+== JSON parser
+
+This challenge was taken form RubyQuiz#155
+
+Your task is to write your own JSON parser. See spec file for more details
+
+enjoy!
+
+
