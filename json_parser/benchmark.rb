@@ -1,15 +1,19 @@
 require File.dirname(__FILE__) + '/../shared/benchmark' # unless defined?(Challenge)
 
 Challenge::Benchmark.new do
-  iterations 10000
+  iterations 1
   before do
     @klass = solution.constant
     @instance = @klass.new
+
+    s =  %Q{"JSON": 3.1415, "data": true, "Array": [1, 2, 3, 6, 10, 234, 323, 23, 2321], }
+    j = ""
+    2000.times { j << s }
+    @data = "{" + j.chop!.chop! + "}"
   end
 
   action do
-    #TODO
-    @instance.parse(%Q{{"JSON": 3.1415, "data": true, "Array": [1, 2, 3]}})
+    @instance.parse(@data)
   end
 
 end                             
