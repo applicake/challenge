@@ -6,9 +6,9 @@ Challenge::Benchmark.new do
     @klass = solution.constant
     @instance = @klass.new
 
-    s =  %Q{"JSON": 3.1415, "data": true, "Array": [1, 2, 3, 6, 10, 234, 323, 23, 2321], }
+    s =  %Q{"JSON": 3.1415, "data": true, "Object": {"nested": "objects", "JSON": 3.1415, "data": {"nested": "objects"}}, "Array": [1, 2, 3, 6, 10, 234, 323, 23, 2321], }
     j = ""
-    2000.times { j << s }
+    1000.times { j << s }
     @data = "{" + j.chop!.chop! + "}"
   end
 
