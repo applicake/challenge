@@ -1,0 +1,32 @@
+== Priority Queue
+
+The task is to implement a data structure capable of storing objects along with their numeric keys. It should expose following methods:
+* push(object, key) - inserts an object with the provided key; raises an exception if the object is already in the queue (does not allow to store duplicates)
+* min - returns an object with the lowest key; returns nil if queue is empty
+* pop - returns an object with the lowest key and removes it; returns nil if queue is empty
+* decrease_key(object, key) - sets the new key for the object; raises an exception if the new key is greater than the old key
+
+ 
+=== Solution format
+
+Let's assume your file is called solutions/mysolution.rb. Then your class should look like this:
+
+  class Mysolution
+  
+    def push(object, key)
+    
+    end
+    
+    def min
+    
+    end
+    
+    def pop
+    
+    end
+    
+    def decrease_key(object, key)
+    
+    end
+    
+  end
