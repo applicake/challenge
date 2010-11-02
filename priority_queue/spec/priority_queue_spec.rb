@@ -24,9 +24,19 @@ Challenge::Spec.new do
     @queue.pop.should == "bbb"
   end
   
-  spec "should raise error on duplicates" do
+  spec "should not allow duplicate objects" do
     @queue.push("aaa", 10)
     lambda { @queue.push("aaa", 20) }.should raise_error
+  end
+  
+  spec "should allow duplicate keys" do 
+    @queue.push("aaa", 10)
+    @queue.push("bbb", 10)
+    obj1 = @queue.pop
+    obj2 = @queue.pop
+    ["aaa", "bbb"].should include(obj1)
+    (["aaa", "bbb"] - [obj1]).should include(obj2)
+      
   end
   
   spec "should decrease key" do
