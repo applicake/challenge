@@ -28,7 +28,8 @@ Challenge::Spec.new do
     @parser.parse(%Q{"JSON"}).should == "JSON"
     @parser.parse('"nested \"quotes\""').should == %Q{nested "quotes"}
     @parser.parse(%Q{"\\n"}).should == "\n"
-    @parser.parse(%Q{"\\u#{"%04X" % ?a}"}).should == "a"
+   # @parser.parse(%Q{"\\u#{"%04X" % ?a}"}).should == "a"
+    @parser.parse(%Q{"\\u0061"}).should == "a"
   end
 
   spec "should parse arrays" do

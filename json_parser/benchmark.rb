@@ -8,7 +8,7 @@ Challenge::Benchmark.new do
 
     s =  %Q{"JSON": 3.1415, "data": true, "Object": {"nested": "objects", "JSON": 3.1415, "data": {"nested": "objects"}}, "Array": [1, 2, 3, 6, 10, 234, 323, 23, 2321], }
     j = ""
-    1000.times { j << s }
+    2500.times { j << s }
     @data = "{" + j.chop!.chop! + "}"
   end
 
