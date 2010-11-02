@@ -8,8 +8,8 @@ Challenge::Spec.new do
   end
   
   spec "should raise errors for empty queue " do
-    lambda { @queue.min }.should raise_error
-    lambda { @queue.pop }.should raise_error
+    @queue.min.should be_nil
+    @queue.pop.should be_nil
   end  
   
   spec "should push, min and pop" do
