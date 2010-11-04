@@ -36,7 +36,6 @@ Challenge::Spec.new do
     obj2 = @queue.pop
     ["aaa", "bbb"].should include(obj1)
     (["aaa", "bbb"] - [obj1]).should include(obj2)
-      
   end
   
   spec "should decrease key" do
