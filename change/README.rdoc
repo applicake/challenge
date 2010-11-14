@@ -1,1 +1,12 @@
-Hello
+== Changer
+
+Write a simple changer.
+You provide an amount of money and a set of coins,
+changer gives you the shortest combination of coins that equals the amount.
+
+So if you want to change 10 and have coins with values 1, 2, 3 and 4,
+it should give you 4, 4 and 2.
+
+Find more in the spec file.
+
+Cheers :)
