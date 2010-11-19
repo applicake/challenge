@@ -1,0 +1,40 @@
+== Triangle path finder
+
+Given a triangle of numbers:
+    7
+   2 3
+  6 8 1
+
+Every number in triangle (apart from last row) has adjacent numbers on the row below (e.g. 2 => 6 and 8, 3 => 8 and 1, 7 => 2 and 3).
+
+A path is a sequence of numbers starting at the top and moving to one of adjacent numbers below. 
+Triangle above has 4 paths: (7 2 6), (7 2 8), (7 3 8), (7 3 1)
+
+Path value is a sum of elements of a path (e.g. 7 + 2 + 6 = 15) for first path.
+
+Best path is a path which has maximum path value in a triangle (e.g. (7 3 8) is best in the triangle above because 7 + 3 + 8 = 18) 
+
+=== Input: 
+String containing numbers divided by spaces tabs or newlines, which can construct triangle row by row in way that first row contains one number, second one two numbers, third one three, etc.
+Only valid strings will be provided (with exact amount of number that can construct triangle)
+Triangle can contain only integers (negative and 0 as well)
+
+examples:
+triangle above can be represented as 
+  "7 2 3 6 8 1" 
+or 
+  "    7 \t   2 \n\n 3 6\n8\t1"
+
+=== Output: 
+Single number equal to value of best path.
+example: 
+  18 
+... for triangle above
+
+
+
+See specs first if you have any questions.
+
+Solution taking more than one minute to solve the benchmark is invalid (gets 0 points).
+
+Have fun!
