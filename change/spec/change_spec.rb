@@ -17,6 +17,7 @@ Challenge::Spec.new do
     @money.change(10, []).should == []
     @money.change(10, [20]).should == []
     @money.change(5, [3,4]).should == []
+    @money.change(8, [5,4,2,1]).should == [4,4]
   end
   
 end
