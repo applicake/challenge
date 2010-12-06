@@ -1,6 +1,6 @@
 == Solitaire Cipher
 
-This challenge was taken from the Ruby Quiz:
+This challenge was taken from the Ruby Quiz:<br>
 http://www.rubyquiz.com/quiz118.html
 
 "
@@ -13,31 +13,37 @@ But I imagine there are microwave users out there who know the trick to saving e
 
 Your task is to write a function in Ruby that determines the optimal pattern of buttons to hit based on this example button pad (where * is "Cook"):
 
-+---+---+---+
-| 1 | 2 | 3 |
-+---+---+---+
-| 4 | 5 | 6 |
-+---+---+---+
-| 7 | 8 | 9 |
-+---+---+---+
-| 0 | * |
-+---+---+
++---+---+---+<br>
+| 1 | 2 | 3 |<br>
++---+---+---+<br>
+| 4 | 5 | 6 |<br>
++---+---+---+<br>
+| 7 | 8 | 9 |<br>
++---+---+---+<br>
+| 0 | * |<br>
++---+---+<br>
 
 Your function should accept an integral time value representing desired seconds and should output an integer that indicates the buttons to press on the microwave's input pad. The metric for determining what input is more efficient is distance (not number of buttons hit). Distance to the Cook button must be included in your efficiency calculation. For simplicity in distance calculations, you may consider the shape of each button to be square.
 
 Examples:
 
-# 99 seconds is 1:39, but 99 is less movement than 139
+# 99 seconds is 1:39, but 99 is less movement than 139<br>
 microwave(99) => 99
 
-# 71 seconds is only two keys, but entering 111 is far less movement.
+# 71 seconds is only two keys, but entering 111 is far less movement.<br>
 microwave(71) => 111
 
-# 120 seconds is 2 minutes, and 200 is slightly less movement than 120
+# 120 seconds is 2 minutes, and 200 is slightly less movement than 120<br>
 microwave(120) => 200
 
-# 123 seconds is 2:03, but 203 is a lot more distance
+# 123 seconds is 2:03, but 203 is a lot more distance<br>
 microwave(123) => 123
 "
 
 For simplicity let's assume that the microwave's display has 4 digits (2 for seconds and 2 for minutes) and we will be using maximum an hour.
+
+The class you create should accept the keyboard layout at initialization, as an array of arrays.
+
+It should also have a method called quickest_sequence that returns the sequence as string.
+
+There's an example file in the solutions dir.
