@@ -1,4 +1,4 @@
-== Solitaire Cipher
+== Microwave Numbers
 
 This challenge was taken from the Ruby Quiz:
 http://www.rubyquiz.com/quiz118.html
