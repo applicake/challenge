@@ -1,0 +1,43 @@
+== Solitaire Cipher
+
+This challenge was taken from the Ruby Quiz:
+http://www.rubyquiz.com/quiz118.html
+
+"
+Micrrowave Numbers (#118)
+by Matthew Moss
+
+Microwave ovens have had a significant impact on how we cook today. One report from 1997 indicated that 90% of US households owned one. Assuming the promise of faster cooking times, that's a lot of time saved.
+
+But I imagine there are microwave users out there who know the trick to saving even more time. Knowing that many microwave ovens recognize 90 seconds as the same as 1 minute 30 seconds, finger-travel distance is saved. (Yes, it's rather insignificant, but don't tell them... us... whatever.)
+
+Your task is to write a function in Ruby that determines the optimal pattern of buttons to hit based on this example button pad (where * is "Cook"):
+
++---+---+---+
+| 1 | 2 | 3 |
++---+---+---+
+| 4 | 5 | 6 |
++---+---+---+
+| 7 | 8 | 9 |
++---+---+---+
+| 0 | * |
++---+---+
+
+Your function should accept an integral time value representing desired seconds and should output an integer that indicates the buttons to press on the microwave's input pad. The metric for determining what input is more efficient is distance (not number of buttons hit). Distance to the Cook button must be included in your efficiency calculation. For simplicity in distance calculations, you may consider the shape of each button to be square.
+
+Examples:
+
+# 99 seconds is 1:39, but 99 is less movement than 139
+microwave(99) => 99
+
+# 71 seconds is only two keys, but entering 111 is far less movement.
+microwave(71) => 111
+
+# 120 seconds is 2 minutes, and 200 is slightly less movement than 120
+microwave(120) => 200
+
+# 123 seconds is 2:03, but 203 is a lot more distance
+microwave(123) => 123
+"
+
+For simplicity let's assume that the microwave's display has 4 digits (2 for seconds and 2 for minutes) and we will be using maximum an hour.

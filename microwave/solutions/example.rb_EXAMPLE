@@ -1,0 +1,11 @@
+class Example
+  attr_reader :layout
+
+  def initialize(layout)
+    @layout = layout
+  end
+
+  def quickest_sequence(seconds)
+    return '60*'
+  end
+end
