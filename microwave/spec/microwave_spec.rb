@@ -21,10 +21,11 @@ Challenge::Spec.new do
   end
 
   COMBINATIONS = {
-    60 => '60*',
-    99 => '99*',
+    60 => '60*',    
+    99 => '99*', 
     71 => '111*',
-    3 => '3*'
+    3 => '3*',  
+    1595 => '2635*', # jacek źle liczy 
   }
 
 
@@ -32,5 +33,15 @@ Challenge::Spec.new do
     spec "should return #{result.inspect} for #{seconds}s" do
       @instance.quickest_sequence(seconds).should == result
     end
+  end
+
+  spec "should use correct metric" do
+    layout = [
+      [ 1, '*',  0  ],
+      [ 5,  3,   4  ],
+      [ 2,  6,   7  ],
+      [ 8,  9,  nil ]
+    ]
+    @klass.new(layout).quickest_sequence(130).should == '130*'
   end
 end
