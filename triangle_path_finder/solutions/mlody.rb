@@ -32,7 +32,7 @@ class Mlody
     end
 
     # max from all integers in last triangle row
-    maxx(@sum[(index - level + 1)..index])
+    @sum[(index - level + 1)..index].max
   end
 
   def maxx(arr)

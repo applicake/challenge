@@ -6,7 +6,7 @@ Challenge::Benchmark.new do
     @klass = solution.constant
     srand(666)
     MAX_NUM = 1000
-    HEIGHT = 1000
+    HEIGHT = 10000
     @triangle = (1..HEIGHT).map do |level|
       Array.new(level) { rand(MAX_NUM) }.join(" ")
     end.join("\n")
