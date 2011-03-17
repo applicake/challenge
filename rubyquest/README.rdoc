@@ -1,0 +1,21 @@
+#---
+# Excerpted from "Seven Languages in Seven Weeks",
+# published by The Pragmatic Bookshelf.
+# Copyrights apply to this code. It may not be used to create training material, 
+# courses, books, articles, and the like. Contact us if you are in doubt.
+# We make no guarantees that this code is fit for any purpose. 
+# Visit http://www.pragmaticprogrammer.com/titles/btlang for more book information.
+
+
+Please implement a simple tree.
+
+It should have at least two methods: 'initialize' and 'trip' and two instance variables: children and node_name.
+
+When initializing, we need to define all nodes of the tree. (please see the specs as the example)
+The purpose of the 'trip' method is to visit all nodes of the tree.
+It should visit first node, then it's first child, then this child's children until the branch is finished.
+Then move to another child, and that child's children and so on. (vertically? please see the spec as the example)
+
+Cheers and good luck!
+
+:)
